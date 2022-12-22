@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "1f9af668-ee2f-4c93-b94c-1b29aa78fe16",
+		"name": "LuisCoin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15502523"
+	},
+	"item": [
+		{
+			"name": "GetBalance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/balances/:account",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"balances",
+						":account"
+					],
+					"variable": [
+						{
+							"key": "account",
+							"value": "0xf6ac737fD028c99b616cf806D887FD85634BD6dd"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetBalance OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/balances/:account",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"balances",
+								":account"
+							],
+							"variable": [
+								{
+									"key": "account",
+									"value": "0xf6ac737fD028c99b616cf806D887FD85634BD6dd"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Dec 2022 23:52:37 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "15"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"balance\": 50\n}"
+				},
+				{
+					"name": "GetBalance INVALID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/balances/:account",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"balances",
+								":account"
+							],
+							"variable": [
+								{
+									"key": "account",
+									"value": "0xf6ac737fD028c99b616cf806D887FD85634BD6dsda"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Dec 2022 23:53:13 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "28"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"invalid address\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Make Transfer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 10, \r\n    \"key\": \"e6df1e73b2716b40141e0665433ee5fa4834e89dab533e3d505ae6a2aff61d99\",\r\n    \"destinationAddress\": \"0xC65A4AfAAc4D8e82EB35FabCEdd2E056fb2924a6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/transfers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"transfers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Make Transfer OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 10, \r\n    \"key\": \"e6df1e73b2716b40141e0665433ee5fa4834e89dab533e3d505ae6a2aff61d99\",\r\n    \"destinationAddress\": \"0xC65A4AfAAc4D8e82EB35FabCEdd2E056fb2924a6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/transfers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"transfers"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Dec 2022 23:54:04 GMT"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Make Transfer NO MONEY",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 1800, \r\n    \"key\": \"0ac22117938afa878bdfb605e1f8f6a62c68dc209b8a515fe631df6b9bfd3ab0\",\r\n    \"destinationAddress\": \"0xe712ff7D451C943932f09C6375601f9Db5E70797\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/transfers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"transfers"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Dec 2022 23:54:45 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"insufficient funds\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
