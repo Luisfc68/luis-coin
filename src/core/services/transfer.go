@@ -5,24 +5,24 @@ import (
 	"github.com/luisfc68/luis-coin/src/core/ports"
 )
 
-type TransferService struct {
+type TransferServiceImpl struct {
 	transferRepository ports.TransferRepository
 	balanceRepository  ports.BalanceRepository
 }
 
-func NewTransferService(transferRepository ports.TransferRepository, balanceRepository ports.BalanceRepository) *TransferService {
-	return &TransferService{
+func NewTransferService(transferRepository ports.TransferRepository, balanceRepository ports.BalanceRepository) *TransferServiceImpl {
+	return &TransferServiceImpl{
 		transferRepository: transferRepository,
 		balanceRepository:  balanceRepository,
 	}
 }
 
-func (service *TransferService) MakeTransfer(transfer *domain.Transfer) error {
+func (service *TransferServiceImpl) MakeTransfer(transfer *domain.Transfer) error {
 	balance, err := service.balanceRepository.GetBalance(transfer.OriginAccount)
 	if err != nil {
 		return err
 	} else if balance.Cmp(transfer.Amount) == -1 {
-		return domain.InsufficientFoundsError
+		return domain.InsufficientFundsError
 	}
 
 	return service.transferRepository.InsertTransfer(transfer)

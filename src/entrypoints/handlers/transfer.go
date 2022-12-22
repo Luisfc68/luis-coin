@@ -47,7 +47,7 @@ func PostTransferHandler(server configuration.Server) http.HandlerFunc {
 
 		err = server.TransferService().MakeTransfer(convertTransfer(transferRQ, accountInfo.Address.String()))
 
-		if errors.Is(err, domain.InsufficientFoundsError) {
+		if errors.Is(err, domain.InsufficientFundsError) {
 			jsonError(writer, err.Error(), http.StatusConflict)
 			return
 		} else if errors.Is(err, domain.InvalidAddressError) {

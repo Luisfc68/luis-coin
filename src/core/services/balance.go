@@ -5,17 +5,17 @@ import (
 	"math/big"
 )
 
-type BalanceService struct {
+type BalanceServiceImpl struct {
 	balanceRepository ports.BalanceRepository
 }
 
-func NewBalanceService(balanceRepository ports.BalanceRepository) *BalanceService {
-	return &BalanceService{
+func NewBalanceService(balanceRepository ports.BalanceRepository) *BalanceServiceImpl {
+	return &BalanceServiceImpl{
 		balanceRepository: balanceRepository,
 	}
 }
 
-func (service *BalanceService) GetBalance(userAddress string) (*big.Int, error) {
+func (service *BalanceServiceImpl) GetBalance(userAddress string) (*big.Int, error) {
 	balance, err := service.balanceRepository.GetBalance(userAddress)
 	if err != nil {
 		return nil, err

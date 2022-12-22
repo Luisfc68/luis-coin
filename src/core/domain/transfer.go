@@ -5,7 +5,7 @@ import (
 	"math/big"
 )
 
-var InsufficientFoundsError = errors.New("insufficient founds")
+var InsufficientFundsError = errors.New("insufficient funds")
 
 type Transfer struct {
 	Amount             *big.Int

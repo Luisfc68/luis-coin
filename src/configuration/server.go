@@ -3,7 +3,7 @@ package configuration
 import (
 	"errors"
 	"github.com/gorilla/mux"
-	"github.com/luisfc68/luis-coin/src/core/services"
+	"github.com/luisfc68/luis-coin/src/core/ports"
 	"github.com/rs/cors"
 	"log"
 	"net/http"
@@ -15,18 +15,18 @@ type ServerConfig struct {
 
 type Server interface {
 	ServerConfig() *ServerConfig
-	BalanceService() *services.BalanceService
-	TransferService() *services.TransferService
+	BalanceService() ports.BalanceService
+	TransferService() ports.TransferService
 }
 
 type Broker struct {
 	config          *ServerConfig
 	router          *mux.Router
-	balanceService  *services.BalanceService
-	transferService *services.TransferService
+	balanceService  ports.BalanceService
+	transferService ports.TransferService
 }
 
-func NewServer(config *ServerConfig, balanceService *services.BalanceService, transferService *services.TransferService) (*Broker, error) {
+func NewServer(config *ServerConfig, balanceService ports.BalanceService, transferService ports.TransferService) (*Broker, error) {
 	if config.Port == "" {
 		return nil, errors.New("missing port")
 	}
@@ -42,11 +42,11 @@ func (broker *Broker) ServerConfig() *ServerConfig {
 	return broker.config
 }
 
-func (broker *Broker) BalanceService() *services.BalanceService {
+func (broker *Broker) BalanceService() ports.BalanceService {
 	return broker.balanceService
 }
 
-func (broker *Broker) TransferService() *services.TransferService {
+func (broker *Broker) TransferService() ports.TransferService {
 	return broker.transferService
 }
 
