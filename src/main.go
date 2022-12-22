@@ -25,7 +25,7 @@ func main() {
 }
 
 func deployAndConnectToContract(client *ethclient.Client) *contracts.Contracts {
-	deployedContract := configuration.DeployContract(client, os.Getenv("ADMIN_ACCOUNT_ADDRESS"))
+	deployedContract := configuration.DeployContract(client, os.Getenv("ADMIN_ACCOUNT_KEY"))
 	conn, err := contracts.NewContracts(common.HexToAddress(deployedContract.Address.Hex()), client)
 	if err != nil {
 		panic(err)
